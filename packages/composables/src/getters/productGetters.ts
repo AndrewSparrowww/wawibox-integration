@@ -3,99 +3,96 @@ import {
   AgnosticAttribute,
   AgnosticPrice,
   ProductGetters
-} from '@vue-storefront/core';
-import type { Product, ProductFilter } from '@vue-storefront/wawibox-api';
+} from '@vue-storefront/core'
+import type { Product, ProductFilter } from '@vue-storefront/wawibox-api'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getName(product: Product): string {
-  return 'Name';
+  return product.name || product.Title
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getSlug(product: Product): string {
-  return 'slug';
+  return product._id
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getPrice(product: Product): AgnosticPrice {
-  return {
-    regular: 0,
-    special: 0
-  };
+  return product.price
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getGallery(product: Product): AgnosticMediaGalleryItem[] {
   return [
     {
-      small: 'https://s3-eu-west-1.amazonaws.com/commercetools-maximilian/products/081223_1_large.jpg',
-      normal: 'https://s3-eu-west-1.amazonaws.com/commercetools-maximilian/products/081223_1_large.jpg',
-      big: 'https://s3-eu-west-1.amazonaws.com/commercetools-maximilian/products/081223_1_large.jpg'
+      small: product.images[0].url,
+      normal: product.images[0].url,
+      big: product.images[0].url
     }
-  ];
+  ]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getCoverImage(product: Product): string {
-  return 'https://s3-eu-west-1.amazonaws.com/commercetools-maximilian/products/081223_1_large.jpg';
+  return product._Bild
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function getFiltered(products: Product[], filters: ProductFilter): Product[] {
-  return [
-    {
-      _id: 1,
-      _description: 'Some description',
+function getFiltered(products: Product[], filters: ProductFilter): any[] {
+  return products.map(p => {
+    return {
+      _id: p._ID,
+      _description: p.Title,
       _categoriesRef: [
         '1',
         '2'
       ],
-      name: 'Black jacket',
-      sku: 'black-jacket',
+      name: p.Title,
+      sku: p._Herstellername,
       images: [
-        'https://s3-eu-west-1.amazonaws.com/commercetools-maximilian/products/081223_1_large.jpg'
+        { url: p._Bild }
       ],
       price: {
-        original: 12.34,
-        current: 10.00
+        regular: parseInt(p._PreisAb_formated),
+        special: parseInt(p._PreisAb_formated)
       }
     }
-  ];
+  })
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getAttributes(products: Product[] | Product, filterByAttributeName?: string[]): Record<string, AgnosticAttribute | string> {
-  return {};
+  return {}
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getDescription(product: Product): string {
-  return '';
+  return product._description
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getCategoryIds(product: Product): string[] {
-  return [];
+  return []
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getId(product: Product): string {
-  return '1';
+  return product._ID
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getFormattedPrice(price: number): string {
-  return '';
+  return String(price)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getTotalReviews(product: Product): number {
-  return 0;
+  return 0
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getAverageRating(product: Product): number {
-  return 0;
+  return 0
 }
 
 export const productGetters: ProductGetters<Product, ProductFilter> = {
@@ -112,4 +109,4 @@ export const productGetters: ProductGetters<Product, ProductFilter> = {
   getFormattedPrice,
   getTotalReviews,
   getAverageRating
-};
+}

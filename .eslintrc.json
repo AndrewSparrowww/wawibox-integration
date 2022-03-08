@@ -11,7 +11,10 @@
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": ["vue", "@typescript-eslint"],
+  "plugins": [
+    "vue",
+    "@typescript-eslint"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -94,7 +97,10 @@
       }
     ],
     "line-comment-position": 2,
-    "linebreak-style": [2, "unix"],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
     "lines-around-comment": 2,
     "max-statements-per-line": 2,
     "no-lonely-if": 2,
@@ -109,11 +115,20 @@
       }
     ],
     "operator-linebreak": 2,
-    "quote-props": [2, "as-needed"],
-    "quotes": [2, "single"],
-    "semi": 2,
+    "quote-props": [
+      2,
+      "as-needed"
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": ["error", "never"],
     "semi-spacing": 2,
-    "one-var": [2, "never"],
+    "one-var": [
+      2,
+      "never"
+    ],
     "eol-last": 2,
     "newline-after-var": 0,
     "no-var": 2,
@@ -135,9 +150,14 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "error"
+        ]
       }
     }
   ]

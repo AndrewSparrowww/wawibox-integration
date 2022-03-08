@@ -1,6 +1,10 @@
 export type TODO = unknown;
 
-export type Setttings = TODO;
+export type Setttings = {
+  api: {
+    url: string
+  }
+};
 
 export type Endpoints = TODO;
 
@@ -24,7 +28,25 @@ export type OrderItem = TODO;
 
 export type PasswordResetResult = TODO;
 
-export type Product = TODO;
+export type Product = {
+  Herstellernummer: string
+  Title: string
+  _ID: string
+  CanonicalID: string
+  _Herstellername: string
+  _PreisAb_formated: string
+  _Bild: string
+  name: string
+  _id: string
+  images: {
+    url: string
+  }
+  price: {
+    regular: number,
+    special: number
+  }
+  _description: string
+};
 
 export type ProductFilter = TODO;
 
